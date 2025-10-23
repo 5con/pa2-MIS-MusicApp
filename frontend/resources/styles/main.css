@@ -1,0 +1,301 @@
+/* Main styles for Freelance Music Platform */
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.jumbotron {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.card-dashboard {
+    transition: transform 0.2s;
+}
+
+.card-dashboard:hover {
+    transform: translateY(-2px);
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    border-top: none;
+}
+
+.badge {
+    font-size: 0.8em;
+}
+
+/* Dashboard specific styles */
+.dashboard-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.stat-number {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+/* Modal styles */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Table styles */
+.table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    vertical-align: middle;
+}
+
+/* Form styles */
+.form-floating > .form-control {
+    height: calc(3.5rem + 2px);
+}
+
+.form-floating > label {
+    padding: 1rem 0.75rem;
+}
+
+/* Alert styles */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* Button hover effects */
+.btn:hover {
+    transform: translateY(-1px);
+    transition: all 0.2s;
+}
+
+/* Loading spinner */
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Calendar styles */
+.fc {
+    font-family: inherit;
+}
+
+.fc-header-toolbar {
+    margin-bottom: 1.5rem;
+}
+
+.fc-button-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.fc-button-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.fc-event {
+    cursor: pointer;
+}
+
+.fc-event:hover {
+    opacity: 0.8;
+}
+
+/* Custom event colors */
+.fc-event.bg-primary {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+
+.fc-event.bg-success {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.fc-event.bg-warning {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+/* Content sections */
+.content-section {
+    display: block;
+}
+
+/* Custom radio buttons for view toggle */
+.btn-check:checked + .btn-outline-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+/* Dashboard specific */
+.dashboard-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: none;
+}
+
+.dashboard-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+    margin: 0;
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Ensure right-side banner text is white on primary navbar */
+.navbar.navbar-dark.bg-primary .navbar-nav .nav-link,
+.navbar.navbar-dark.bg-primary .navbar-text,
+.navbar.bg-primary .navbar-nav .nav-link,
+.navbar.bg-primary .navbar-text {
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .jumbotron h1 {
+        font-size: 2rem;
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .dashboard-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .stat-card {
+        margin: 0;
+    }
+
+    .fc-header-toolbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .fc-toolbar-chunk {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Sortable table headers */
+.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.sortable:hover {
+    background-color: #e9ecef !important;
+}
+
+.sortable i {
+    font-size: 0.8em;
+    margin-left: 5px;
+    opacity: 0.5;
+}

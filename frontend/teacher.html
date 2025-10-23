@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard - Freelance Music Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/index.min.css" rel="stylesheet" />
+    <link href="resources/styles/main.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-music me-2"></i>Freelance Music Platform
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showTeacherDashboard()">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showTeacherProfile()">
+                            <i class="fas fa-user-edit me-1"></i>Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showTeacherAvailability()">
+                            <i class="fas fa-calendar-plus me-1"></i>Availability
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showTeacherLessons()">
+                            <i class="fas fa-calendar-check me-1"></i>My Lessons
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <span class="nav-link">Welcome, <span id="teacherName">Teacher</span> (Teacher)</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <div id="alertContainer"></div>
+
+        <!-- Teacher Dashboard -->
+        <div id="teacherDashboard" class="content-section">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card dashboard-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Upcoming Lessons</h5>
+                            <div id="upcomingLessons" class="table-responsive">
+                                <!-- Upcoming lessons will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Management -->
+        <div id="teacherProfile" class="content-section" style="display: none;">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card dashboard-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Update Profile</h5>
+                            <form id="profileForm">
+                                <input type="hidden" id="userId">
+                                <div class="mb-3">
+                                    <label class="form-label">Instruments You Teach *</label>
+                                    <div id="instrumentsContainer" class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Guitar" id="inst-guitar">
+                                                    <label class="form-check-label" for="inst-guitar">Guitar</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Piano" id="inst-piano">
+                                                    <label class="form-check-label" for="inst-piano">Piano</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Violin" id="inst-violin">
+                                                    <label class="form-check-label" for="inst-violin">Violin</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Drums" id="inst-drums">
+                                                    <label class="form-check-label" for="inst-drums">Drums</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Voice" id="inst-voice">
+                                                    <label class="form-check-label" for="inst-voice">Voice</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Flute" id="inst-flute">
+                                                    <label class="form-check-label" for="inst-flute">Flute</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Saxophone" id="inst-saxophone">
+                                                    <label class="form-check-label" for="inst-saxophone">Saxophone</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Trumpet" id="inst-trumpet">
+                                                    <label class="form-check-label" for="inst-trumpet">Trumpet</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Clarinet" id="inst-clarinet">
+                                                    <label class="form-check-label" for="inst-clarinet">Clarinet</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Cello" id="inst-cello">
+                                                    <label class="form-check-label" for="inst-cello">Cello</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Bass" id="inst-bass">
+                                                    <label class="form-check-label" for="inst-bass">Bass</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Ukulele" id="inst-ukulele">
+                                                    <label class="form-check-label" for="inst-ukulele">Ukulele</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input instrument-checkbox" type="checkbox" value="Other" id="inst-other">
+                                                    <label class="form-check-label" for="inst-other">Other</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <small class="form-text text-muted">Select all instruments you teach</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="customLessonRate" class="form-label">Custom Lesson Rate (leave blank for default $30)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control" id="customLessonRate" min="0" step="0.01" placeholder="30.00">
+                                    </div>
+                                    <div class="form-text">Set your own rate or leave blank to use the default rate</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bio" class="form-label">Bio</label>
+                                    <textarea class="form-control" id="bio" rows="4" placeholder="Tell students about your background and teaching style..."></textarea>
+                                </div>
+                                <div id="profileError" class="alert alert-danger d-none"></div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>Update Profile
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card dashboard-card">
+                        <div class="card-body">
+                            <h6 class="card-title">Current Settings</h6>
+                            <div id="currentProfile">
+                                <p class="mb-1"><strong>Instrument:</strong> <span id="currentInstrument">-</span></p>
+                                <p class="mb-1"><strong>Rate:</strong> $<span id="currentRate">-</span></p>
+                                <p class="mb-0"><strong>Bio:</strong> <span id="currentBio">-</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Availability Management -->
+        <div id="teacherAvailability" class="content-section" style="display: none;">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card dashboard-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Add New Availability</h5>
+                            <form id="availabilityForm">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label for="availabilityDate" class="form-label">Date</label>
+                                            <input type="date" class="form-control" id="availabilityDate" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label for="availabilityTime" class="form-label">Time</label>
+                                            <select class="form-control" id="availabilityTime" required>
+                                                <!-- Time options will be populated by JavaScript -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label for="duration" class="form-label">Duration</label>
+                                            <select class="form-control" id="duration">
+                                                <option value="30">30 minutes</option>
+                                                <option value="45">45 minutes</option>
+                                                <option value="60">60 minutes</option>
+                                                <option value="90">90 minutes</option>
+                                                <option value="120">2 hours</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">&nbsp;</label>
+                                            <button type="submit" class="btn btn-primary w-100">
+                                                <i class="fas fa-plus me-2"></i>Add Slot
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="availabilityError" class="alert alert-danger d-none"></div>
+                            </form>
+
+                            <h5 class="card-title mt-4">Your Availability</h5>
+                            <div id="availabilityList" class="table-responsive">
+                                <!-- Availability list will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card dashboard-card">
+                        <div class="card-body">
+                            <h6 class="card-title">Scheduling Tips</h6>
+                            <ul class="list-unstyled small">
+                                <li class="mb-2"><i class="fas fa-info-circle text-info me-2"></i>Set availability for times when you're free</li>
+                                <li class="mb-2"><i class="fas fa-info-circle text-info me-2"></i>Students can only book future time slots</li>
+                                <li class="mb-2"><i class="fas fa-info-circle text-info me-2"></i>You cannot schedule overlapping time slots</li>
+                                <li class="mb-2"><i class="fas fa-info-circle text-info me-2"></i>Choose durations that work for your teaching style</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lessons Management -->
+        <div id="teacherLessons" class="content-section" style="display: none;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card dashboard-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="card-title">My Lessons</h5>
+                                <form class="d-flex gap-2">
+                                    <input type="date" class="form-control" id="lessonDateFilter">
+                                    <button type="button" class="btn btn-outline-primary" onclick="filterLessons()">
+                                        <i class="fas fa-filter me-1"></i>Filter
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="clearLessonFilter()">
+                                        <i class="fas fa-times me-1"></i>Clear
+                                    </button>
+                                </form>
+                            </div>
+                            <div id="lessonsTable" class="table-responsive">
+                                <!-- Lessons table will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/index.global.min.js"></script>
+    <script src="resources/scripts/main.js"></script>
+    <script src="resources/scripts/teacher.js"></script>
+</body>
+</html>

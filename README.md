@@ -92,6 +92,22 @@ The application includes a comprehensive admin dashboard for system management a
 2. Navigate to: http://localhost:8080/admin.html
 3. Login with the admin credentials above
 
+**Student Features:**
+- **Browse Teachers:** View all available teachers and their availability
+- **Search by Instrument:** Find teachers by the instrument you want to learn
+- **Book Lessons:** Book single or recurring lessons with flexible scheduling
+- **Sheet Music Upload:** Upload sheet music before booking (PDF, JPG, PNG supported)
+- **My Lessons:** View all your booked lessons with filtering (Upcoming, Past, Cancelled)
+- **Cancel Lessons:** Cancel scheduled lessons with confirmation
+- **Payment Processing:** Secure payment validation with Luhn algorithm
+
+**Teacher Features:**
+- **Manage Availability:** Add and remove availability time slots
+- **View Lessons:** See all scheduled lessons with student details
+- **Cancel Lessons:** Cancel lessons when necessary
+- **Profile Management:** Update bio, instruments taught, and custom lesson rates
+- **Calendar View:** Visual calendar of availability and booked lessons
+
 **Admin Features:**
 - **Dashboard Overview:** View total lessons, teachers, students, and key metrics
 - **Lesson Management:** View all lessons with filtering and sorting capabilities
@@ -104,15 +120,35 @@ The application includes a comprehensive admin dashboard for system management a
 
 All endpoints are prefixed with `/api/`. Examples:
 
+### Home/Authentication
 - `POST /api/home/login` - User authentication
 - `POST /api/home/register` - User registration
+- `POST /api/home/logout` - User logout
+
+### Student Endpoints
 - `GET /api/student/availabilities` - Get teacher availabilities
-- `POST /api/student/book` - Book a lesson
+- `GET /api/student/lessons/{studentId}` - Get student's booked lessons
+- `GET /api/student/search?instrument={name}` - Search teachers by instrument
+- `POST /api/student/book` - Book a single lesson (with optional sheet music)
+- `POST /api/student/book-recurring` - Book recurring lessons
+- `POST /api/student/sheet-music` - Upload sheet music file
+- `POST /api/student/validate-payment` - Validate payment information
+- `DELETE /api/student/lesson/{lessonId}` - Cancel a lesson
+
+### Teacher Endpoints
 - `GET /api/teacher/lessons/{teacherId}` - Get teacher's lessons
+- `GET /api/teacher/profile/{userId}` - Get teacher profile
 - `POST /api/teacher/availability` - Add teacher availability
+- `PUT /api/teacher/profile/{userId}` - Update teacher profile
+- `DELETE /api/teacher/availability/{availabilityId}` - Remove availability
+- `DELETE /api/teacher/lesson/{lessonId}` - Cancel a lesson
+
+### Admin Endpoints
 - `GET /api/admin/dashboard` - Get admin dashboard data
 - `GET /api/admin/lessons` - Get all lessons with filtering/sorting
 - `GET /api/admin/reports` - Get comprehensive analytics reports
+- `GET /api/admin/revenue-distribution` - Get revenue distribution analysis
+- `POST /api/admin/seed` - Seed database with dummy data
 
 ## Development
 
